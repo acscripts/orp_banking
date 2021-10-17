@@ -1,10 +1,19 @@
 fx_version 'cerulean'
 game 'gta5'
 
-client_script 'client.lua'
+author 'HiHowdy & ANTOND.#8507'
+description 'Banking script with qtarget support.'
+version '2.0.0'
+
+
 server_scripts {
-	'@mysql-async/lib/MySQL.lua',
+	'@es_extended/imports.lua',
 	'server.lua'
+}
+
+client_scripts {
+	'config.lua',
+	'client.lua'
 }
 
 ui_page 'html/index.html'
