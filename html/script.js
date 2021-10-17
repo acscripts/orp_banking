@@ -1,26 +1,31 @@
 window.addEventListener('message', function(event) {
-	if (event.data.type === 'openBank') {
+	if(event.data.type === 'openBank') {
 		$('#bankui').fadeTo(10, 1.0);
 		$('#depositval').val('');
 		$('#withdrawval').val('');
-	} else if (event.data.type === 'closeAll') {
+
+	} else if(event.data.type === 'closeAll') {
 		$('#bankui').fadeTo(10, 0.0);
-	} else if (event.data.type === 'updateBalance') {
+
+	} else if(event.data.type === 'updateBalance') {
 		let money = formatter.format(event.data.balance);
 		money = money.substring(1);
 		$('.balance').html(money);
+
 	};
 });
 
+
+
 $('.close').click(function() {
 	$('bankui').hide();
-	$.post(`https://${GetParentResourceName()}/NUIFocusOff`, JSON.stringify({}));
+	$.post(`https://${GetParentResourceName()}/closeMenu`, JSON.stringify({}));
 });
 
 $('#withdraw').click(function(e) {
 	e.preventDefault();
-	$.post(`https://${GetParentResourceName()}/withdrawl`, JSON.stringify({
-		amountw: $('#withdrawval').val()
+	$.post(`https://${GetParentResourceName()}/withdraw`, JSON.stringify({
+		amount: $('#withdrawval').val()
 	}));
 	$('#withdrawval').val('');
 });
@@ -35,22 +40,22 @@ $('#deposit').click(function(e) {
 
 $('#withdraw-100').click(function(e) {
 	e.preventDefault();
-	$.post(`https://${GetParentResourceName()}/withdrawl`, JSON.stringify({
-		amountw: 100
+	$.post(`https://${GetParentResourceName()}/withdraw`, JSON.stringify({
+		amount: 100
 	}));
 });
 
 $('#withdraw-250').click(function(e) {
 	e.preventDefault();
-	$.post(`https://${GetParentResourceName()}/withdrawl`, JSON.stringify({
-		amountw: 250
+	$.post(`https://${GetParentResourceName()}/withdraw`, JSON.stringify({
+		amount: 250
 	}));
 });
 
 $('#withdraw-500').click(function(e) {
 	e.preventDefault();
-	$.post(`https://${GetParentResourceName()}/withdrawl`, JSON.stringify({
-		amountw: 500
+	$.post(`https://${GetParentResourceName()}/withdraw`, JSON.stringify({
+		amount: 500
 	}));
 });
 
@@ -58,7 +63,7 @@ $('#transfer').click(function(e) {
 	e.preventDefault();
 	$.post(`https://${GetParentResourceName()}/transfer`, JSON.stringify({
 		to: $('#idval').val(),
-		amountt: $('#transferval').val()
+		amount: $('#transferval').val()
 	}));
 	$('#transferval').val('');
 });
@@ -66,7 +71,7 @@ $('#transfer').click(function(e) {
 document.onkeyup = function(data) {
 	if (data.key == 'Escape') {
 		$('#bankui').fadeTo(10, 0.0);
-		$.post(`https://${GetParentResourceName()}/NUIFocusOff`, JSON.stringify({}));
+		$.post(`https://${GetParentResourceName()}/closeMenu`, JSON.stringify({}));
 	};
 };
 
