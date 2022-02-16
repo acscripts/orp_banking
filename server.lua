@@ -7,7 +7,7 @@ end)
 
 RegisterNetEvent('orp_banking:deposit', function(amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local amount = tonumber(amount)
+	amount = tonumber(amount)
 
 	if amount == nil or amount <= 0 or amount > xPlayer.getMoney() then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Invalid amount', 'error')
@@ -21,8 +21,8 @@ end)
 
 RegisterNetEvent('orp_banking:withdraw', function(amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local amount = tonumber(amount)
 	local balance = xPlayer.getAccount('bank').money
+	amount = tonumber(amount)
 
 	if amount == nil or amount <= 0 or amount > balance then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Invalid amount', 'error')
@@ -37,7 +37,7 @@ end)
 RegisterNetEvent('orp_banking:transfer', function(target, amount)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local xTarget = ESX.GetPlayerFromId(target)
-	local amount = tonumber(amount)
+	amount = tonumber(amount)
 
 	if xTarget == nil or xTarget == -1 then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Recipient not found', 'error')
