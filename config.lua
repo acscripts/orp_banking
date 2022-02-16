@@ -33,4 +33,4 @@ SendNotify = function(msg, type)
 
 end
 
-RegisterNetEvent('orp_bank:notify', SendNotify)
+RegisterNetEvent('orp_banking:notify', SendNotify)
