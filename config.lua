@@ -18,6 +18,7 @@ Config.BankZones = {
 		minZ = 28.37,
 		maxZ = 31.07
 	},
+
 	{ -- Del Perro
 		pos = vec3(-1212.92, -331.6, 37.79),
 		h = 27.0,
@@ -26,6 +27,7 @@ Config.BankZones = {
 		minZ = 36.79,
 		maxZ = 39.49
 	},
+
 	{ -- Burton
 		pos = vec3(-351.78, -50.36, 49.04),
 		h = 341.0,
@@ -34,6 +36,7 @@ Config.BankZones = {
 		minZ = 48.04,
 		maxZ = 50.74
 	},
+
 	{ -- Hawick
 		pos = vec3(313.37, -279.53, 54.17),
 		h = 340.0,
@@ -42,6 +45,7 @@ Config.BankZones = {
 		minZ = 53.17,
 		maxZ = 55.87
 	},
+
 	{ -- Highway
 		pos = vec3(-2961.91, 482.27, 15.7),
 		h = 87.0,
@@ -50,6 +54,7 @@ Config.BankZones = {
 		minZ = 14.7,
 		maxZ = 17.4
 	},
+
 	{ -- Sandy Shores
 		pos = vec3(1175.7, 2707.51, 38.09),
 		h = 0.0,
@@ -58,6 +63,7 @@ Config.BankZones = {
 		minZ = 37.09,
 		maxZ = 39.79
 	},
+
 	{ -- Paleto Bay
 		pos = vec3(-111.54, 6469.59, 31.62),
 		h = 315.0,
@@ -65,20 +71,19 @@ Config.BankZones = {
 		width = 4.4,
 		minZ = 30.62,
 		maxZ = 33.12
-	},
+	}
 }
 
 SendNotify = function(msg, type)
 
-	TriggerEvent('mythic_notify:client:SendAlert', {								-- https://github.com/antond15/mythic_notify
+	TriggerEvent('mythic_notify:client:SendAlert', {								-- https://github.com/thelindat/mythic_notify
 		type = type,
 		text = msg,
 		length = 7500
 	})
 
-	-- TriggerEvent('esx:showNotification', msg)									-- Default GTA V notification.
-	-- TriggerEvent('t-notify:client:Alert', { style = type, message = msg })		-- https://github.com/TasoOneAsia/t-notify
-	-- TriggerEvent('b1g_notify:client:Notify', { type = type, text = msg })		-- https://github.com/CarlosVergikosk/B1G_NOTIFY
+	-- ESX.ShowNotification(msg)													-- Default ESX notification
+	-- exports['t-notify']:Alert({ style = type, message = msg })					-- https://github.com/TasoOneAsia/t-notify
 
 end
 
