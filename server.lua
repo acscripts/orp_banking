@@ -14,7 +14,7 @@ RegisterNetEvent('orp_banking:deposit', function(amount)
 	else
 		xPlayer.removeMoney(amount)
 		xPlayer.addAccountMoney('bank', amount)
-		TriggerClientEvent('orp_banking:update', xPlayer.source, balance + amount)
+		TriggerClientEvent('orp_banking:update', xPlayer.source, xPlayer.getAccount('bank').money + amount)
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You have successfully deposited $'.. amount, 'success')
 	end
 end)
