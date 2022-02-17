@@ -10,25 +10,81 @@ Config.ATMProps = {
 }
 
 Config.BankZones = {
-	{ vec3(149.24, -1040.58, 29.36), 160.0 },		-- Legion Square
-	{ vec3(-1213.25, -331.12, 37.77), 207.0 },		-- Del Perro
-	{ vec3(-351.6, -49.77, 49.03), 160.0 },			-- Burton
-	{ vec3(313.58, -278.94, 54.17), 160.0 },		-- Hawick
-	{ vec3(-2962.52, 482.24, 15.7), 268.0 },		-- Highway
-	{ vec3(1175.71, 2706.87, 38.09), 0.0 },			-- Sandy Shores
-	{ vec3(-112.02, 6469.17, 31.62), 315.0 },		-- Paleto Bay
+	{ -- Legion Square
+		pos = vec3(149.02, -1041.17, 29.37),
+		h = 340.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 28.37,
+		maxZ = 31.07
+	},
+
+	{ -- Del Perro
+		pos = vec3(-1212.92, -331.6, 37.79),
+		h = 27.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 36.79,
+		maxZ = 39.49
+	},
+
+	{ -- Burton
+		pos = vec3(-351.78, -50.36, 49.04),
+		h = 341.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 48.04,
+		maxZ = 50.74
+	},
+
+	{ -- Hawick
+		pos = vec3(313.37, -279.53, 54.17),
+		h = 340.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 53.17,
+		maxZ = 55.87
+	},
+
+	{ -- Highway
+		pos = vec3(-2961.91, 482.27, 15.7),
+		h = 87.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 14.7,
+		maxZ = 17.4
+	},
+
+	{ -- Sandy Shores
+		pos = vec3(1175.7, 2707.51, 38.09),
+		h = 0.0,
+		length = 0.8,
+		width = 6.0,
+		minZ = 37.09,
+		maxZ = 39.79
+	},
+
+	{ -- Paleto Bay
+		pos = vec3(-111.54, 6469.59, 31.62),
+		h = 315.0,
+		length = 0.8,
+		width = 4.4,
+		minZ = 30.62,
+		maxZ = 33.12
+	}
 }
 
 SendNotify = function(msg, type)
 
-	TriggerEvent('mythic_notify:client:SendAlert', {								-- https://github.com/antond15/mythic_notify
+	TriggerEvent('mythic_notify:client:SendAlert', {								-- https://github.com/thelindat/mythic_notify
 		type = type,
 		text = msg,
 		length = 7500
 	})
 
-	-- TriggerEvent('esx:showNotification', msg)									-- Default GTA V notification.
-	-- TriggerEvent('t-notify:client:Alert', { style = type, message = msg })		-- https://github.com/TasoOneAsia/t-notify
-	-- TriggerEvent('b1g_notify:client:Notify', { type = type, text = msg })		-- https://github.com/CarlosVergikosk/B1G_NOTIFY
+	-- ESX.ShowNotification(msg)													-- Default ESX notification
+	-- exports['t-notify']:Alert({ style = type, message = msg })					-- https://github.com/TasoOneAsia/t-notify
 
 end
+
+RegisterNetEvent('orp_banking:notify', SendNotify)
