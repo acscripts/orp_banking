@@ -5,11 +5,11 @@ end)
 
 
 
-RegisterNetEvent('orp_banking:deposit', function(amount)
+RegisterNetEvent('orp_banking:deposit', function(data)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	amount = tonumber(amount)
+	local amount = tonumber(data?.amount)
 
-	if amount == nil or amount <= 0 or amount > xPlayer.getMoney() then
+	if not amount or amount <= 0 or amount > xPlayer.getMoney() then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Invalid amount', 'error')
 	else
 		xPlayer.removeMoney(amount)
@@ -19,12 +19,12 @@ RegisterNetEvent('orp_banking:deposit', function(amount)
 	end
 end)
 
-RegisterNetEvent('orp_banking:withdraw', function(amount)
+RegisterNetEvent('orp_banking:withdraw', function(data)
 	local xPlayer = ESX.GetPlayerFromId(source)
 	local balance = xPlayer.getAccount('bank').money
-	amount = tonumber(amount)
+	local amount = tonumber(data?.amount)
 
-	if amount == nil or amount <= 0 or amount > balance then
+	if not amount or amount <= 0 or amount > balance then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Invalid amount', 'error')
 	else
 		xPlayer.removeAccountMoney('bank', amount)
@@ -34,29 +34,29 @@ RegisterNetEvent('orp_banking:withdraw', function(amount)
 	end
 end)
 
-RegisterNetEvent('orp_banking:transfer', function(target, amount)
+RegisterNetEvent('orp_banking:transfer', function(data)
 	local xPlayer = ESX.GetPlayerFromId(source)
-	local xTarget = ESX.GetPlayerFromId(target)
-	amount = tonumber(amount)
+	local xTarget = ESX.GetPlayerFromId(data?.target)
+	local amount = tonumber(data?.amount)
 
-	if xTarget == nil or xTarget == -1 then
+	if not amount or amount <= 0 then
+		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Invalid amount', 'error')
+	elseif xTarget == nil or xTarget == -1 then
 		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'Recipient not found', 'error')
+	elseif xPlayer.source == xTarget.source then
+		TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You cannot transfer money to yourself', 'error')
 	else
-		if xPlayer.source == xTarget.source then
-			TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You cannot transfer money to yourself', 'error')
+		local balance = xPlayer.getAccount('bank').money
+		if balance <= 0 or balance < amount or amount <= 0 then
+			TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You don\'t have enough money for this transfer', 'error')
 		else
-			local balance = xPlayer.getAccount('bank').money
-			if balance <= 0 or balance < amount or amount <= 0 then
-				TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You don\'t have enough money for this transfer', 'error')
-			else
-				xPlayer.removeAccountMoney('bank', amount)
-				TriggerClientEvent('orp_banking:update', xPlayer.source, balance - amount)
-				TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You have successfully transferred $'.. amount, 'success')
+			xPlayer.removeAccountMoney('bank', amount)
+			TriggerClientEvent('orp_banking:update', xPlayer.source, balance - amount)
+			TriggerClientEvent('orp_banking:notify', xPlayer.source, 'You have successfully transferred $'.. amount, 'success')
 
-				xTarget.addAccountMoney('bank', amount)
-				TriggerClientEvent('orp_banking:update', xTarget.source, xTarget.getAccount('bank').money)
-				TriggerClientEvent('orp_banking:notify', xTarget.source, 'You just received $'.. amount ..' via bank transfer', 'success')
-			end
+			xTarget.addAccountMoney('bank', amount)
+			TriggerClientEvent('orp_banking:update', xTarget.source, xTarget.getAccount('bank').money)
+			TriggerClientEvent('orp_banking:notify', xTarget.source, 'You just received $'.. amount ..' via bank transfer', 'success')
 		end
 	end
 end)

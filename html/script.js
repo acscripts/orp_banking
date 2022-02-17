@@ -67,7 +67,7 @@ $('#withdraw').click(function(e) {
 $('#transfer').click(function(e) {
 	e.preventDefault();
 	$.post('https://orp_banking/transfer', JSON.stringify({
-		to: $('#idval').val(),
+		target: $('#idval').val(),
 		amount: $('#transferval').val()
 	}));
 

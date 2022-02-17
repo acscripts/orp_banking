@@ -1,5 +1,6 @@
 fx_version 'cerulean'
 game 'gta5'
+lua54 'yes'
 
 author 'HiHowdy & ANTOND.#8507'
 description 'Banking script with qtarget support.'

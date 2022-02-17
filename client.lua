@@ -47,18 +47,18 @@ end)
 
 RegisterNUICallback('deposit', function(data)
 	if isInBank then
-		TriggerServerEvent('orp_banking:deposit', tonumber(data.amount))
+		TriggerServerEvent('orp_banking:deposit', data)
 	else
 		SendNotify('You cannot deposit money at an ATM', 'error')
 	end
 end)
 
 RegisterNUICallback('withdraw', function(data)
-	TriggerServerEvent('orp_banking:withdraw', tonumber(data.amount))
+	TriggerServerEvent('orp_banking:withdraw', data)
 end)
 
 RegisterNUICallback('transfer', function(data)
-	TriggerServerEvent('orp_banking:transfer', data.to, data.amount)
+	TriggerServerEvent('orp_banking:transfer', data)
 end)
 
 
