@@ -36,9 +36,6 @@ window.addEventListener('message', function(event) {
 		$('#depositval').val('');
 		$('#withdrawval').val('');
 
-	} else if(data.type == 'closeAll') {
-		closeUi();
-
 	} else if(data.type == 'updateBalance') {
 		updateBalance(data.balance);
 

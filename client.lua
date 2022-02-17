@@ -23,7 +23,6 @@ end
 local CloseBank = function()
 	uiOpened = false
 	SetNuiFocus(false, false)
-	SendNUIMessage({ type = 'closeAll' })
 end
 
 local currentResource = GetCurrentResourceName()
