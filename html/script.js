@@ -7,7 +7,7 @@ const formatter = new Intl.NumberFormat('en-US', {
 const updateBalance = (balance) => {
 	let money = formatter.format(balance);
 	money = money.substring(1);
-	$('.balance').html(money);
+	$('.balance').text(money);
 };
 
 
@@ -35,6 +35,7 @@ window.addEventListener('message', function(event) {
 		$('#bankui').fadeIn();
 		$('#depositval').val('');
 		$('#withdrawval').val('');
+		$('#depositval').prop('disabled', !data.isInBank);
 
 	} else if(data.type == 'updateBalance') {
 		updateBalance(data.balance);

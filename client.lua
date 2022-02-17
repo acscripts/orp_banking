@@ -6,15 +6,16 @@ local isInBank = false
 local OpenBank = function(bank)
 	ESX.TriggerServerCallback('orp_banking:getBalance', function(balance)
 		uiOpened = true
-		isInBank = bank or false
+		isInBank = bank == true
 
 		SetNuiFocus(true, true)
 		SendNUIMessage({
 			type = 'openBank',
-			balance = balance
+			balance = balance,
+			isInBank = isInBank
 		})
 
-		if isInBank then
+		if not isInBank then
 			SendNotify('Please note that you can only deposit money at bank', 'inform')
 		end
 	end)
