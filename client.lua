@@ -1,4 +1,4 @@
--- TODO: Create new Polyzones for banks (line 76 and below)
+-- TODO: Multiple UI colors (Fleeca, Lombank, Maze bank)
 
 local uiOpened = false
 local isInBank = false
