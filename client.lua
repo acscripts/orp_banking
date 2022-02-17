@@ -73,12 +73,12 @@ exports.qtarget:AddTargetModel(Config.ATMProps, {
 	distance = 1.5
 })
 
-exports.qtarget:AddBoxZone('LegionSquare_Fleeca1', vec3(145.84, -1035.6, 29.33), 0.5, 1.0,
+exports.qtarget:AddBoxZone('ATM_L', vec3(147.49, -1036.18, 29.34), 0.4, 1.3,
 	{
-		name = 'LegionSquare_Fleeca1',
-		heading = 160.0,
-		minZ = 29.0,
-		maxZ = 30.5
+		name = 'ATM_L',
+		heading = 340.0,
+		minZ = 28.69,
+		maxZ = 30.64
 	},
 	{
 		options = {{
@@ -90,12 +90,12 @@ exports.qtarget:AddBoxZone('LegionSquare_Fleeca1', vec3(145.84, -1035.6, 29.33),
 	}
 )
 
-exports.qtarget:AddBoxZone('LegionSquare_Fleeca2', vec3(147.5, -1036.2, 29.33), 0.5, 1.0,
+exports.qtarget:AddBoxZone('ATM_R', vec3(145.85, -1035.61, 29.34), 0.4, 1.3,
 	{
-		name = 'LegionSquare_Fleeca2',
-		heading = 160.0,
-		minZ = 29.0,
-		maxZ = 30.5
+		name = 'ATM_R',
+		heading = 340.0,
+		minZ = 28.69,
+		maxZ = 30.64
 	}, {
 		options = {{
 			icon = 'fas fa-credit-card',
@@ -107,15 +107,13 @@ exports.qtarget:AddBoxZone('LegionSquare_Fleeca2', vec3(147.5, -1036.2, 29.33), 
 )
 
 for k,v in pairs(Config.BankZones) do
-	local pos = GetObjectOffsetFromCoords(v, 0.0, 0.7, 0.0)
 	local name = ('Bank_%s'):format(k)
-
-	exports.qtarget:AddBoxZone(name, pos, 1.0, 4.5,
+	exports.qtarget:AddBoxZone(name, v.pos, v.length, v.width,
 		{
 			name = name,
-			heading = v.w,
-			minZ = pos.z - 1.0,
-			maxZ = pos.z + 1.5
+			heading = v.h,
+			minZ = v.minZ,
+			maxZ = v.maxZ
 		}, {
 			options = {{
 				icon = 'fas fa-money-bill-wave',
