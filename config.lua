@@ -76,13 +76,11 @@ Config.BankZones = {
 
 SendNotify = function(msg, type)
 
-	TriggerEvent('mythic_notify:client:SendAlert', {								-- https://github.com/thelindat/mythic_notify
-		type = type,
+	exports.ox_inventory:notify({
 		text = msg,
-		length = 7500
+		type = type
 	})
 
-	-- ESX.ShowNotification(msg)													-- Default ESX notification
 	-- exports['t-notify']:Alert({ style = type, message = msg })					-- https://github.com/TasoOneAsia/t-notify
 
 end

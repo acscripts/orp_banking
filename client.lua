@@ -4,7 +4,7 @@ local uiOpened = false
 local isInBank = false
 
 local OpenBank = function(bank)
-	ESX.TriggerServerCallback('orp_banking:getBalance', function(balance)
+	lib.callback('orp_banking:getBalance', 100, function(balance)
 		uiOpened = true
 		isInBank = bank == true
 

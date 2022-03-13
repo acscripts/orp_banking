@@ -7,9 +7,12 @@ description 'Banking script with qtarget support.'
 version '2.0.0'
 
 
-shared_script '@es_extended/imports.lua'
-server_script 'server.lua'
+shared_scripts {
+	'@ox_core/imports.lua',
+	'@ox_lib/init.lua'
+}
 
+server_script 'server.lua'
 client_scripts {
 	'config.lua',
 	'client.lua'
