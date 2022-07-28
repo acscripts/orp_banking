@@ -73,16 +73,3 @@ Config.BankZones = {
 		maxZ = 33.12
 	}
 }
-
-SendNotify = function(msg, type)
-
-	exports.ox_inventory:notify({
-		text = msg,
-		type = type
-	})
-
-	-- exports['t-notify']:Alert({ style = type, message = msg })					-- https://github.com/TasoOneAsia/t-notify
-
-end
-
-RegisterNetEvent('orp_banking:notify', SendNotify)

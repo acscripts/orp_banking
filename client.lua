@@ -16,7 +16,10 @@ local OpenBank = function(bank)
 		})
 
 		if not isInBank then
-			SendNotify('Please note that you can only deposit money at bank', 'inform')
+			lib.notify({
+				type = 'inform',
+				description = 'Please note that you can only deposit money at bank'	
+			})
 		end
 	end)
 end
@@ -26,9 +29,10 @@ local CloseBank = function()
 	SetNuiFocus(false, false)
 end
 
-local currentResource = GetCurrentResourceName()
 AddEventHandler('onResourceStop', function(resource)
-	if resource == currentResource then CloseBank() end
+	if resource == cache.resource then
+		CloseBank()
+	end
 end)
 
 
@@ -49,7 +53,10 @@ RegisterNUICallback('deposit', function(data)
 	if isInBank then
 		TriggerServerEvent('orp_banking:deposit', data)
 	else
-		SendNotify('You cannot deposit money at an ATM', 'error')
+		lib.notify({
+			type = 'error',
+			description = 'You cannot deposit money at an ATM'	
+		})
 	end
 end)
 
